@@ -10,14 +10,14 @@ namespace e_commerce_cs.Repositories
   {
     private readonly IMongoCollection<User> _userCollection = mongoDbService.GetCollection<User>("users");
 
-    public FilterDefinition<User> GetUserFilter(UserDTO userDTO)
+    public FilterDefinition<User> GetUserFilter(string email)
     {
-      return Builders<User>.Filter.Eq(u => u.Email, userDTO.Email);
+      return Builders<User>.Filter.Eq(u => u.Email, email);
     }
 
-    public async Task<User> GetUser(UserDTO userDTO)
+    public async Task<User> GetUser(string email)
     {
-      FilterDefinition<User> filter = GetUserFilter(userDTO);
+      FilterDefinition<User> filter = GetUserFilter(email);
       return await _userCollection.Find(filter).FirstOrDefaultAsync();
     }
 
@@ -31,6 +31,24 @@ namespace e_commerce_cs.Repositories
         return user;
       }
       return await _userCollection.Find(filter).FirstOrDefaultAsync();
+    }
+
+    public async Task<User> UpdateEmailConfirmedAsync(User user)
+    {
+      FilterDefinition<User> filter = Builders<User>.Filter.Eq(u => u._id, user._id);
+      UpdateDefinition<User> update = Builders<User>.Update.Set(u => u.EmailConfirmed, true);
+
+      await _userCollection.UpdateOneAsync(filter, update);
+      return await _userCollection.Find(filter).FirstOrDefaultAsync();
+    }
+    
+    public async Task<User> UpdatePasswordAsync(User user, string password)
+    {
+        FilterDefinition<User> filter = Builders<User>.Filter.Eq(u => u._id, user._id);
+        UpdateDefinition<User> update = Builders<User>.Update.Set(u => u.Password, password);
+
+        await _userCollection.UpdateOneAsync(filter, update);
+        return await _userCollection.Find(filter).FirstOrDefaultAsync();
     }
   }
 }
