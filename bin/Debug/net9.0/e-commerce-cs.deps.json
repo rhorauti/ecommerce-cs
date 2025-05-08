@@ -8,6 +8,8 @@
     ".NETCoreApp,Version=v9.0": {
       "e-commerce-cs/1.0.0": {
         "dependencies": {
+          "AWSSDK.S3": "3.7.416.16",
+          "AWSSDK.SecurityToken": "3.7.401.89",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.3",
           "Microsoft.AspNetCore.Identity": "2.3.1",
           "Microsoft.AspNetCore.OpenApi": "9.0.2",
@@ -15,6 +17,36 @@
         },
         "runtime": {
           "e-commerce-cs.dll": {}
+        }
+      },
+      "AWSSDK.Core/3.7.402.46": {
+        "runtime": {
+          "lib/net8.0/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.402.46"
+          }
+        }
+      },
+      "AWSSDK.S3/3.7.416.16": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.402.46"
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.S3.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.416.16"
+          }
+        }
+      },
+      "AWSSDK.SecurityToken/3.7.401.89": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.402.46"
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.SecurityToken.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.401.89"
+          }
         }
       },
       "DnsClient/1.6.1": {
@@ -395,6 +427,27 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AWSSDK.Core/3.7.402.46": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/W2Y/8PmNilP4qONoPJz5/AgHwvwblmE8wvf1nG+oqqd2fX88vUNRToHmdVxZUqjLtx64VryI7iGKRaPUDMkTA==",
+      "path": "awssdk.core/3.7.402.46",
+      "hashPath": "awssdk.core.3.7.402.46.nupkg.sha512"
+    },
+    "AWSSDK.S3/3.7.416.16": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ny3iI0bZqh7sIr3TpiI73vmLN/9KlV7LNzJQ+Vxota6h2jGVtnelzQHh9HPBh5wI7KrFU9z4/gTR4xcicKjUuA==",
+      "path": "awssdk.s3/3.7.416.16",
+      "hashPath": "awssdk.s3.3.7.416.16.nupkg.sha512"
+    },
+    "AWSSDK.SecurityToken/3.7.401.89": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HZ/tPaMoxKYlgTW7k0nLC/9QjyDXY3i+1yI7ptMKlZR378ikmFe4QgMf73MQeG+dIhAKf1SBTAXDytdlPtttcg==",
+      "path": "awssdk.securitytoken/3.7.401.89",
+      "hashPath": "awssdk.securitytoken.3.7.401.89.nupkg.sha512"
     },
     "DnsClient/1.6.1": {
       "type": "package",

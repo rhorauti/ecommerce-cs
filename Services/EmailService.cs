@@ -48,8 +48,8 @@ namespace e_commerce_cs.Services
             </html>";
       await SendEmailAsync(toEmail, subject, body);
     }
-    
-      public async Task SendEmailConfirmationResetPassword(string toEmail, string name, string token)
+
+    public async Task SendEmailConfirmationResetPassword(string toEmail, string name, string token)
     {
       string subject = "Recuperação de senha!";
       string body = $@"
@@ -57,7 +57,7 @@ namespace e_commerce_cs.Services
               <body>
                 <h2>Olá, <span style='font-weight: bold;'>{name}</span></h2>
                 <p>Recebemos sua solicitação de recuperação de senha. Para criar uma nova senha, clique no link abaixo:</p><br>
-                <h3><p><a href='{_urlFront}/new-password?token={ token}' target='_blank'>Recuperar senha</a></p></h3><br>
+                <h3><p><a href='{_urlFront}/new-password?token={token}' target='_blank'>Recuperar senha</a></p></h3><br>
                 <p>Se você não solicitou a recuperação de senha, por favor, ignore este e-mail, por motivos de segurança.</p>
                 <p>Tenha um ótimo dia!</p><br>
                 <p>Atenciosamente,</p>

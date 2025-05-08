@@ -1,6 +1,7 @@
 using e_commerce_cs.DTOs;
 using e_commerce_cs.Models;
 using e_commerce_cs.MongoDB;
+
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -41,14 +42,14 @@ namespace e_commerce_cs.Repositories
       await _userCollection.UpdateOneAsync(filter, update);
       return await _userCollection.Find(filter).FirstOrDefaultAsync();
     }
-    
+
     public async Task<User> UpdatePasswordAsync(User user, string password)
     {
-        FilterDefinition<User> filter = Builders<User>.Filter.Eq(u => u._id, user._id);
-        UpdateDefinition<User> update = Builders<User>.Update.Set(u => u.Password, password);
+      FilterDefinition<User> filter = Builders<User>.Filter.Eq(u => u._id, user._id);
+      UpdateDefinition<User> update = Builders<User>.Update.Set(u => u.Password, password);
 
-        await _userCollection.UpdateOneAsync(filter, update);
-        return await _userCollection.Find(filter).FirstOrDefaultAsync();
+      await _userCollection.UpdateOneAsync(filter, update);
+      return await _userCollection.Find(filter).FirstOrDefaultAsync();
     }
   }
 }

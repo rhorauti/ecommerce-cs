@@ -6,8 +6,8 @@ namespace e_commerce_cs.Models
 {
   public class User
   {
-    [BsonId] 
-    [BsonRepresentation(BsonType.ObjectId)] 
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
     public string? _id { get; set; } = ObjectId.GenerateNewId().ToString();
     [BsonElement("name")]
     public required string Name { get; set; }

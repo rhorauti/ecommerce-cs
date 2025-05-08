@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "gVVtwEL39x0=",
+  "dgSpecHash": "8joQSbGfKWQ=",
   "success": true,
   "projectFilePath": "C:\\1 - Rafael\\22 - VSCode\\01 - Projetos\\06 - Ecommerce-react\\e-commerce-cs\\e-commerce-cs.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Dell\\.nuget\\packages\\awssdk.core\\3.7.402.46\\awssdk.core.3.7.402.46.nupkg.sha512",
+    "C:\\Users\\Dell\\.nuget\\packages\\awssdk.s3\\3.7.416.16\\awssdk.s3.3.7.416.16.nupkg.sha512",
+    "C:\\Users\\Dell\\.nuget\\packages\\awssdk.securitytoken\\3.7.401.89\\awssdk.securitytoken.3.7.401.89.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.3.0\\microsoft.aspnetcore.authentication.2.3.0.nupkg.sha512",
     "C:\\Users\\Dell\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.3.0\\microsoft.aspnetcore.authentication.abstractions.2.3.0.nupkg.sha512",

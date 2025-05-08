@@ -1,11 +1,13 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+
 using Microsoft.IdentityModel.Tokens;
 
-namespace e_commerce_cs.Services {
-  public class JwtService(IConfiguration config)
+namespace e_commerce_cs.Services
 {
+  public class JwtService(IConfiguration config)
+  {
     private readonly string _secretKey = config["JwtSettings:SecretKey"]
         ?? throw new ArgumentNullException(nameof(config), "Sem secret key definida.");
     private readonly string _audience = config["JwtSettings:Audience"]
@@ -14,47 +16,47 @@ namespace e_commerce_cs.Services {
 
     public string GenerateToken(string userId, string userEmail)
     {
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secretKey));
-        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+      SymmetricSecurityKey key = new(Encoding.UTF8.GetBytes(_secretKey));
+      SigningCredentials credentials = new(key, SecurityAlgorithms.HmacSha256);
 
-        var claims = new[]
-        {
-            new Claim(JwtRegisteredClaimNames.Sub, userId), 
-            new Claim(JwtRegisteredClaimNames.Email, userEmail),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()) 
-        };
+      Claim[] claims =
+      [
+          new Claim(JwtRegisteredClaimNames.Sub, userId),
+                new Claim(JwtRegisteredClaimNames.Email, userEmail),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+      ];
 
-        var token = new JwtSecurityToken(
-            audience: _audience,
-            claims: claims,
-            expires: DateTime.UtcNow.AddMinutes(_expirationMinutes),
-            signingCredentials: credentials
-        );
+      JwtSecurityToken token = new(
+          audience: _audience,
+          claims: claims,
+          expires: DateTime.UtcNow.AddMinutes(_expirationMinutes),
+          signingCredentials: credentials
+      );
 
-        return new JwtSecurityTokenHandler().WriteToken(token);
+      return new JwtSecurityTokenHandler().WriteToken(token);
     }
 
     public ClaimsPrincipal? ValidateToken(string token)
     {
-        try
+      try
+      {
+        JwtSecurityTokenHandler tokenHandler = new();
+        TokenValidationParameters validationParameters = new()
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var validationParameters = new TokenValidationParameters
-            {
-                ValidateIssuer = false,
-                ValidateAudience = true,
-                ValidAudience = _audience,
-                ValidateLifetime = true,
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secretKey))
-            };
+          ValidateIssuer = false,
+          ValidateAudience = true,
+          ValidAudience = _audience,
+          ValidateLifetime = true,
+          ValidateIssuerSigningKey = true,
+          IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secretKey))
+        };
 
-            return tokenHandler.ValidateToken(token, validationParameters, out _);
-        }
-        catch (Exception)
-        {
-            return null; 
-        }
+        return tokenHandler.ValidateToken(token, validationParameters, out _);
+      }
+      catch (Exception)
+      {
+        return null;
+      }
     }
-}
+  }
 }

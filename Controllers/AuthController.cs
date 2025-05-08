@@ -1,8 +1,10 @@
 using System.Security.Claims;
+
 using e_commerce_cs.DTOs;
 using e_commerce_cs.Models;
 using e_commerce_cs.Repositories;
 using e_commerce_cs.Services;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace e_commerce_cs.Controllers
@@ -113,7 +115,6 @@ namespace e_commerce_cs.Controllers
     [HttpPost(ENDPOINT.BASE + "user/password-recover")]
     public async Task<IActionResult> SendEmailPasswordRecover([FromBody] EmailDTO email)
     {
-      Console.WriteLine("EMAIL" + email);
       User user = await authRepository.GetUser(email.Email);
       if (user == null)
       {
